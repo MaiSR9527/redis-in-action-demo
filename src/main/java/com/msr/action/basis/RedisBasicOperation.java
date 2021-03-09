@@ -34,6 +34,12 @@ public class RedisBasicOperation {
         return null;
     }
 
+    @GetMapping("/getKey/{key}")
+    public Object getKey(@PathVariable String key) {
+        ValueOperations<Object, Object> ops = redisTemplate.opsForValue();
+        return ops.get(key);
+    }
+
     @GetMapping("listKey")
     public Object listKeys() {
         Set<Object> keys = redisTemplate.keys("*");
